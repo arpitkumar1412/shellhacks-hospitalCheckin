@@ -67,10 +67,11 @@ def start3(aptmnt):
                 aptmnt['Doctor'] = data_doctors.iloc[data]['Department']
                 aptmnt['Token'] = data_doctors.iloc[data]['Token_num']+1
                 data_doctors.at[data, 'Token_num'] = aptmnt['Token']
-                data_doctors.to_csv('../doctors.csv')
                 break
             except sr.UnknownValueError:
                 print("Could not understand audio")
+
+        data_doctors.to_csv('../doctors.csv', index=False)
 
         while True:
             print("ComputerJi: {}".format('Would you like to submit?'))
