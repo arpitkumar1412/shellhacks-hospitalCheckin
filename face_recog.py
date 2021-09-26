@@ -3,6 +3,7 @@ import time
 from deepface import DeepFace
 import os
 import numpy as np
+
 def capture_image(TIMER_READY=int(2), TIMER_COUNT=int(3)):
 
     timer_ready = TIMER_READY
@@ -34,7 +35,7 @@ def capture_image(TIMER_READY=int(2), TIMER_COUNT=int(3)):
 
         	font = cv2.FONT_HERSHEY_SIMPLEX
         	cv2.putText(img, str(timer_count),
-        				(200, 250), font,
+        				(50, 250), font,
         				7, (0, 255, 255),
         				4, cv2.LINE_AA)
         	cv2.imshow('a', img)
@@ -70,19 +71,28 @@ def get_face(img=None):
     detected_face = DeepFace.detectFace(img, detector_backend = backends[0])
     return detected_face
 
-img = capture_image(int(2),int(3))
-cv2.imwrite('face_curr/camera.jpg', img)
-backends = ['opencv', 'ssd', 'mtcnn', 'retinaface']
-metrics = ["cosine", "euclidean", "euclidean_l2"]
-val = 0
-for img in os.listdir('face_database'):
-    obj = DeepFace.verify('face_curr/camera.jpg', os.path.join('face_database', img), model_name = "VGG-Face", detector_backend = backends[0], distance_metric = metrics[1])
-    if obj['verified']:
-        print('match found')
-        val = 1
-        break
-if val == 0:
-    print('new patient')
-    name = input('Enter your name, underscore bw name and surname: ')
-    cv2.imwrite(os.path.join('face_database',name)+'.jpg', img)
-os.remove('face_curr/camera.jpg')
+def image_capture(TIMER_READY=int(2), TIMER_COUNT=int(3)):
+    image = capture_image(TIMER_READY, TIMER_COUNT)
+    cv2.imwrite('face_curr/camera.jpg', image)
+    backends = ['opencv', 'ssd', 'mtcnn', 'retinaface']
+    metrics = ["cosine", "euclidean", "euclidean_l2"]
+    val = 0
+    person = {'Name': None,
+              'Age': None,
+              'Sex': None}
+    for img in os.listdir('face_database'):
+        obj = DeepFace.verify('face_curr/camera.jpg', os.path.join('face_database', img), model_name = "VGG-Face", detector_backend = backends[0], distance_metric = metrics[1])
+        if obj['verified']:
+            print('match found')
+            data = (img.split('.')[:-1])[0].split('_')
+            person['Name'] = data[0]
+            person['Age'] = data[1]
+            person['Sex'] = data[2]
+            print(person)
+            val = 1
+            break
+    if val == 0:
+        print('new patient')
+    # os.remove('face_curr/camera.jpg')
+
+    return val, person
