@@ -3,8 +3,8 @@ import pyttsx3
 import speech_recognition as sr
 import pandas as pd
 
-greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey']
-questions = ['Please say your name', 'Please say your age', 'Please say your sex']
+greetings = ['hey there', 'hello', 'hi', 'hey!', 'hey']
+questions = ['hey there', 'Please say your name', 'Please say your age', 'Please say your sex', 'Please choose the index of the doctor you would like to see', 'Is this correct']
 appointment = ['Please choose the index of the doctor you would like to see']
 confirm = ['Is this correct', 'Are you sure']
 

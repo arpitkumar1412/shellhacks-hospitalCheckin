@@ -4,17 +4,29 @@
     </div>
   {% endblock %}
   {% block content2 %}
-    var block_to_insert ;
-    var container_block ;
+    const questions = ['Hey there', 'Please say your name', 'Please say your age', 'Please say your sex', 'Please choose the index of the doctor you would like to see', 'Is this correct']
+    for(let i=0; i<questions.length; ++i){
+      var block_to_insert ;
+      var container_block ;
+      block_to_insert = document.createElement('div');
+      console.log(questions[])
+      block_to_insert.innerHTML = " <div class="container">
+                                    <img src="/w3images/bandmember.jpg" alt="Avatar">
+                                    <p>${questions[i]}</p>
+                                    <span class="time-right">11:00</span>
+                                    </div>"
+      container_block = document.getElementById('chatWindow');
+      container_block.appendChild( block_to_insert );
+    }
 
-    block_to_insert = document.createElement('div');
-    block_to_insert.innerHTML = `<div class="container">
-                                  <img src="/w3images/bandmember.jpg" alt="Avatar">
-                                  <p>{{question}}</p>
-                                  <span class="time-right">11:00</span>
-                                  </div>` ;
-
-    container_block = document.getElementById('chatWindow');
-    container_block.appendChild( block_to_insert );
+      <!-- var block_to_insert ;
+      var container_block ;
+      block_to_insert = document.createElement('div');
+      block_to_insert.innerHTML = `<div class="container">
+                                    <img src="/w3images/bandmember.jpg" alt="Avatar">
+                                    <p>{{get_voice()}}</p>
+                                    <span class="time-right">11:00</span>
+                                    </div>` ;
+      container_block = document.getElementById('chatWindow');
+      container_block.appendChild( block_to_insert ); -->
   {% endblock %}
-</html>
