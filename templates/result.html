@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content1 %}
+  <div>
+    <h1>Details</h1>
+    <h1>Name: {{aptmnt['Name']}}</h1>
+    <h1>Age: {{aptmnt['Age']}}</h1>
+    <h1>Sex: {{aptmnt['Sex']}}</h1>
+    <h1>Docotr: {{aptmnt['Doctor']}}</h1>
+    <h1>Token: {{aptmnt['Token']}}</h1>
+  </div>
+  <div>
+    <a href=home><button type="button" class="btn btn-primary">Book Another Appointment</button></a>
+  </div>
+{% endblock %}

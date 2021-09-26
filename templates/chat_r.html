@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+  {% block content1 %}
+  <div>
+    {% if type == "voice" %}
+      <a href=chatbot_q_1><button type="button" class="btn btn-primary">Next</button></a>
+    {% endif %}
+    {% if type == "appointment" %}
+      <a href=chatbot_q_2><button type="button" class="btn btn-primary">Next</button></a>
+    {% endif %}
+    {% if type == "check" %}
+      <a href=home><button type="button" class="btn btn-primary">Next</button></a>
+    {% endif %}
+  </div>
+  {% endblock %}
+  {% block content2 %}
+      <script>
+        document.body.innerHTML += `<p>{{data}}</p>`;
+      </script>
+  {% endblock %}

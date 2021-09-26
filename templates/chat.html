@@ -1,32 +1,33 @@
 {% extends "base.html" %}
   {% block content1 %}
-    <div id="chatWindow">
-    </div>
+  <div>
+    {% if type == 0 %}
+      <a href=chatbot_r_0><button type="button" class="btn btn-primary">Next</button></a>
+    {% endif %}
+    {% if type == 1 %}
+      <a href=chatbot_r_1><button type="button" class="btn btn-primary">Next</button></a>
+      <ol>
+      {% for name in doctors %}
+        <li>{{name}}</li>
+      {% endfor %}
+      <ol>
+    {% endif %}
+    {% if type == 2 %}
+      <a href=chatbot_r_2><button type="button" class="btn btn-primary">Next</button></a>
+      <div>
+        <h1>Details - </h1>
+        <h1>Name: {{aptmnt['Name']}}</h1>
+        <h1>Age: {{aptmnt['Age']}}</h1>
+        <h1>Sex: {{aptmnt['Sex']}}</h1>
+        <h1>Doctor: {{aptmnt['Doctor']}}</h1>
+        <h1>Token: {{aptmnt['Token']}}</h1>
+      </div>
+    {% endif %}
+  </div>
   {% endblock %}
   {% block content2 %}
-    const questions = ['Hey there', 'Please say your name', 'Please say your age', 'Please say your sex', 'Please choose the index of the doctor you would like to see', 'Is this correct']
-    for(let i=0; i<questions.length; ++i){
-      var block_to_insert ;
-      var container_block ;
-      block_to_insert = document.createElement('div');
-      console.log(questions[])
-      block_to_insert.innerHTML = " <div class="container">
-                                    <img src="/w3images/bandmember.jpg" alt="Avatar">
-                                    <p>${questions[i]}</p>
-                                    <span class="time-right">11:00</span>
-                                    </div>"
-      container_block = document.getElementById('chatWindow');
-      container_block.appendChild( block_to_insert );
-    }
-
-      <!-- var block_to_insert ;
-      var container_block ;
-      block_to_insert = document.createElement('div');
-      block_to_insert.innerHTML = `<div class="container">
-                                    <img src="/w3images/bandmember.jpg" alt="Avatar">
-                                    <p>{{get_voice()}}</p>
-                                    <span class="time-right">11:00</span>
-                                    </div>` ;
-      container_block = document.getElementById('chatWindow');
-      container_block.appendChild( block_to_insert ); -->
+      <script>
+        console.log("{{data}}")
+        document.body.innerHTML += `<p>{{data}}</p>`;
+      </script>
   {% endblock %}
